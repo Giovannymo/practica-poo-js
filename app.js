@@ -23,11 +23,49 @@ function addTrivia(e){
         'D': $txtAnswerD.value,
     }
 
+    reset()
+
     const trivia = new Trivia(question, answers, 0)
 
     quizzes.push(trivia)
+    createCard()
+}
+
+function createCard(){
+    const fragment = document.createDocumentFragment()
 
 
+    quizzes.forEach(quiz =>{
+        /**
+        const $card = document.createElement('div')
+        $card.className = "p-5 rounded w1/4"
+        fragment.appendChild($card)
+
+
+        const $question = document.createElement('h2')
+        $question.textContent = quiz.question
+        fragment.appendChild($question)
+        * */
+        
+
+    })
+    Object.entries(quizzes[0].answers)
+    
+    
 
 }
+
+
+function reset(){
+    $txtQuestion.value = "",
+    $txtAnswerA.value = "",
+    $txtAnswerB.value = "",
+    $txtAnswerC.value = "",
+    $txtAnswerD.value = ""      
+}
+
+ 
+
+
+
 
