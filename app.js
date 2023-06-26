@@ -6,6 +6,7 @@ const $txtAnswerB = document.getElementById("answerB")
 const $txtAnswerC = document.getElementById("answerC")
 const $txtAnswerD = document.getElementById("answerD")
 const $quizForm = document.getElementById("quizForm")
+const $container = document.getElementById('container-questions')
 
 const quizzes = []
 
@@ -15,6 +16,26 @@ $quizForm.addEventListener("submit", addTrivia);
 function addTrivia(e){
     e.preventDefault();
 
+    const $optionA = document.getElementById('optionA')
+    const $optionB = document.getElementById('optionB')
+    const $optionC = document.getElementById('optionC')
+    const $optionD = document.getElementById('optionD')
+    let answerCorrect = undefined
+
+    if($optionA.checked){
+        answerCorrect = $optionA.value
+    }
+    if($optionB.checked){
+        answerCorrect = $optionB.value
+    }
+    if($optionC.checked){
+        answerCorrect = $optionC.value
+    }
+    if($optionD.checked){
+        answerCorrect = $optionD.value
+    }
+
+
     const question = $txtQuestion.value
     const answers = {
         'A': $txtAnswerA.value,
@@ -23,35 +44,52 @@ function addTrivia(e){
         'D': $txtAnswerD.value,
     }
 
-    reset()
-
-    const trivia = new Trivia(question, answers, 0)
-
+    const trivia = new Trivia(question, answers, answerCorrect)
     quizzes.push(trivia)
+
+    reset()
     createCard()
+
+
 }
 
 function createCard(){
     const fragment = document.createDocumentFragment()
-
-
-    quizzes.forEach(quiz =>{
-        /**
-        const $card = document.createElement('div')
-        $card.className = "p-5 rounded w1/4"
-        fragment.appendChild($card)
-
-
-        const $question = document.createElement('h2')
-        $question.textContent = quiz.question
-        fragment.appendChild($question)
-        * */
+    const template = document.getElementById('card').content
+    quizzes.forEach(trivia =>{
+        const question = template.querySelector('.question')
         
+        question.textContent = trivia.question
 
+        const $templateAnswers = template.querySelectorAll('label')
+        //Recorre los label del template y recorre los objetos para agregarlo al canvas
+        Array.from($templateAnswers).forEach(element =>{
+            const $answer = element.querySelectorAll("span")[1]
+
+            for(const answer in trivia.answers){
+                if($answer.classList.contains("answerA")){
+                    $answer.textContent = trivia.answers[answer]
+                }
+                if($answer.classList.contains("answerB")){
+                    $answer.textContent = trivia.answers[answer]
+                }
+                if($answer.classList.contains("answerC")){
+                    $answer.textContent = trivia.answers[answer]
+                }
+                if($answer.classList.contains("answerD")){
+                    $answer.textContent = trivia.answers[answer]
+                }
+
+            }
+
+        })
+        const clone = template.cloneNode(template)
+
+        fragment.appendChild(clone)
     })
-    Object.entries(quizzes[0].answers)
-    
-    
+
+    $container.appendChild(fragment)
+
 
 }
 
@@ -61,11 +99,7 @@ function reset(){
     $txtAnswerA.value = "",
     $txtAnswerB.value = "",
     $txtAnswerC.value = "",
-    $txtAnswerD.value = ""      
+    $txtAnswerD.value = "",
+    $container.innerHTML=""
 }
-
- 
-
-
-
 
