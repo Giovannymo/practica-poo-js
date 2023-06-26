@@ -5,27 +5,27 @@ export default class Trivia {
         this.answers = answers;
         this.correct = correct;
     }
-
-    set question(question){
+    
+    set setQuestion(question){
         this.question = question
     }
-    get question(){
+    get getQuestion(){
         return this.question
     }
 
-    set answers(answers){
+    set setAnswers(answers){
         this.answers = answers
     }
 
-    get answers(){
+    get getAnswers(){
         return this.answers
     }
 
-    set correct(correct){
+    set setCorrect(correct){
         this.correct = correct
     }
 
-    get correct(){
+    get getCorrect(){
         return this.correct
     }
 
