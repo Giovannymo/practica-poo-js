@@ -11,6 +11,7 @@ const $container = document.getElementById('container-questions')
 const quizzes = []
 
 $quizForm.addEventListener("submit", addTrivia);
+$container.addEventListener("click", deleteCard)
 
 
 function addTrivia(e){
@@ -83,6 +84,9 @@ function createCard(){
             }
 
         })
+
+        const btnDelete =  template.querySelector(".btnDelete")
+        btnDelete.id = quizzes.indexOf(trivia)
         const clone = template.cloneNode(template)
 
         fragment.appendChild(clone)
@@ -91,6 +95,14 @@ function createCard(){
     $container.appendChild(fragment)
 
 
+}
+function deleteCard(e){
+    //Al indice que es el id del btn lo eliminamos y volvemos a pintar el canvas de las cartas con el nuevo array
+    if(e.target.classList.contains("btnDelete")){
+        quizzes.splice(e.target.id, 1)
+    }
+    reset()
+    createCard()
 }
 
 
