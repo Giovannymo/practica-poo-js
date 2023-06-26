@@ -19,9 +19,9 @@
         }
       </script>
 </head>
-<body class="container-sm h-screen flex justify-center items-center font-poppins">
+<body class="container-sm mt-4 flex flex-col justify-center items-center font-poppins">
 
-    <main class="container min-w-[350px] bg-stone-200  w-2/5 h-auto p-10 rounded shadow-lg ">
+    <main class="container min-w-[350px] bg-stone-200 text-sm w-2/5 h-min p-8 rounded shadow-lg ">
 
         <form id="quizForm" class="flex flex-col flex-wrap items-center">
             <label for="question">Ingresar nueva pregunta: </label>
@@ -34,11 +34,65 @@
             <input class="w-2/4 rounded p-1" type="text" name="answerC" id="answerC">
             <label for="D">D.</label>
             <input class="w-2/4 rounded p-1" type="text" name="answerD" id="answerD">
+            <label for="correct">Seleccione la respuesta correcta:</label>
+            <div class="answer-correct w-2/4 p-2 rounded shadow shadow-slate-100/20 flex justify-evenly bg-slate-100">
+              
+              <label class="radio-control">
+                <input  type="radio" name="answer" id="optionA" value="A" >
+                A
+              </label>
+              <label class="radio-control">
+                <input type="radio" name="answer" id="optionB" value="B">
+                B
+              </label>
+              </label>
+              <label class="radio-control">
+                <input type="radio" name="answer" id="optionC" value="C">
+                C
+              </label>
+              </label>
+              <label class="radio-control">
+                <input type="radio" name="answer" id="optionD" value="D">
+                D
+              </label>
+            </div>
 
             <button  class="bg-green-600 shadow-lg shadow-green-500/50 p-3 rounded mt-5 text-white" type="submit">Guardar</button>
         </form>
 
-    </main>
+      </main>
+      <div id="container-questions" class=" bg-green-900 min-w-full flex flex-wrap  justify-around px-12">
+
+      </div>
+      
+      <template id="card">        
+        <div class="prueba-template min-w-[250px] max-w-[250px] bg-slate-100 my-8 flex flex-col  p-5 rounded text-sm  break-words text-center">
+        <h3 class="question text-md my-6 " >Cuanto es dos mas dos?sdfsdfsdfdsfsdfsdfsdsdfdsfsdf</h3>
+        <label>
+          <input type="radio" name="A" value="A">
+          <span>A</span><span class="answerA">${respuesta}</span>
+        </label>
+        <label>
+          <input type="radio" name="B" value="B">
+          <span>B</span><span class="answerB">${respuesta}</span>
+        </label>
+        <label>
+          <input type="radio" name="C" value="C">
+          <span>C</span><span class="answerC">${respuesta}</span>
+        </label>
+        <label>
+          <input type="radio" name="D" value="D">
+          <span>D</span><span class="answerD">${respuesta}</span>
+        </label>
+        <button class="bg-blue-600 hover:bg-blue-700 border-none p-1 my-3 rounded text-white" id="btnEdit">
+          Editar
+        </button>
+        <button class="bg-red-700 hover:bg-red-800 border-none p-1 my-3 rounded text-white" id="btnDeleted">
+          Eliminar
+        </button>
+        </div>
+
+    </template>
     <script type="module" defer src="./app.js"></script>
 </body>
 </html>
