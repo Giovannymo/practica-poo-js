@@ -22,7 +22,7 @@
 <body class="container-sm mt-4 flex flex-col justify-center items-center font-poppins">
 
     <main class="container min-w-[350px] bg-stone-200 text-sm w-2/5 h-min p-8 rounded shadow-lg ">
-
+      <h1 class="text-2xl my-6 text-center font-bold">Agregar pregunta</h1>
         <form id="quizForm" class="flex flex-col flex-wrap items-center">
             <label for="question">Ingresar nueva pregunta: </label>
             <input class="w-[100%] rounded p-1" type="text" name="question" id="question">
@@ -61,11 +61,58 @@
         </form>
 
       </main>
-      <div id="container-questions" class=" bg-green-900 min-w-full flex flex-wrap  justify-around px-12">
+      <!--Contenedor cards-->
+      <div id="container-questions" class="min-w-full flex flex-wrap  justify-evenly gap-5">
 
       </div>
+
+      <!--Modal para editar-->
+
+      <div id="modalEdit" class="container bg-gray-700/90 min-w-full min-h-screen absolute top-0 left-0 flex justify-center items-center hidden">
+        <div class="modal min-w-[350px] w-2/6 bg-gray-300 max-h-[50%] p-6 rounded ">  
+          <h1 class="text-2xl my-6 text-center font-bold">Editar pregunta</h1>
+          <form id="editForm" class="flex flex-col flex-wrap items-center">
+              <label for="question">Ingresar nueva pregunta: </label>
+              <input class="w-[100%] rounded p-1" type="text" name="question" id="questionEdit">
+              <label for="A">A.</label>
+              <input class="w-2/4 rounded p-1" type="text" name="answerA" id="answerAEdit">
+              <label for="B">B.</label>
+              <input class="w-2/4 rounded p-1" type="text" name="answerB" id="answerBEdit">
+              <label for="C">C.</label>
+              <input class="w-2/4 rounded p-1" type="text" name="answerC" id="answerCEdit">
+              <label for="D">D.</label>
+              <input class="w-2/4 rounded p-1" type="text" name="answerD" id="answerDEdit">
+              <label for="correct">Seleccione la respuesta correcta:</label>
+              <div class="answer-correct w-2/4 p-2 rounded shadow shadow-slate-100/20 flex justify-evenly bg-slate-100">
+                
+                <label class="radio-control">
+                  <input  type="radio" name="answer" id="optionAEdit" value="A" >
+                  A
+                </label>
+                <label class="radio-control">
+                  <input type="radio" name="answer" id="optionBEdit" value="B">
+                  B
+                </label>
+                </label>
+                 <label class="radio-control">
+                  <input type="radio" name="answer" id="optionCEdit" value="C">
+                  C
+                </label>
+                </label>
+                <label class="radio-control">
+                  <input type="radio" name="answer" id="optionDEdit" value="D">
+                  D
+                </label>
+              </div>
+
+              <button id="btnEdit" class="bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/50 p-3 rounded mt-5 text-white">Editar</button>
+          </form>
+
+        </div>
+      </div>
       
-      <template id="card">        
+      
+    <template id="card">        
         <div class="prueba-template min-w-[250px] max-w-[250px] bg-slate-100 my-8 flex flex-col  p-5 rounded text-sm  break-words text-center">
         <h3 class="question text-md my-6 " >Cuanto es dos mas dos?sdfsdfsdfdsfsdfsdfsdsdfdsfsdf</h3>
         <label>
@@ -84,7 +131,7 @@
           <input type="radio" name="D" value="D">
           <span>D</span><span class="answerD">${respuesta}</span>
         </label>
-        <button class="bg-blue-600 hover:bg-blue-700 border-none p-1 my-3 rounded text-white">
+        <button class="btnEdit bg-blue-600 hover:bg-blue-700 border-none p-1 my-3 rounded text-white">
           Editar
         </button>
         <button class="btnDelete bg-red-700 hover:bg-red-800 border-none p-1 my-3 rounded text-white">
